@@ -8,7 +8,9 @@ var htmlValidate = require('html-angular-validate');
 
 function validate(file, options, cb) {
   var self = this;
-  htmlValidate.validate(file.path, options).then(function(result) {
+  var optionsCopy = JSON.parse(JSON.stringify(options));
+  
+  htmlValidate.validate(file.path, optionsCopy).then(function(result) {
     self.push(file);
     if (result.allpassed) {
       cb();
